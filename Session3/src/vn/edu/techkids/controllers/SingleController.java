@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class SingleController implements Controller {
 
-    protected GameObject gameObject;
+    public GameObject gameObject;
     protected GameDrawer gameDrawer;
     protected GameVector gameVector;
 

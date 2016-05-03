@@ -62,9 +62,6 @@ public class PlaneController extends SingleController {
                     bullet,
                     imageDrawer
             );
-            bulletController.r.setBounds(gameObject.getX() + gameObject.getWidth() / 2 - Bullet.DEFAULT_WIDTH / 2 ,gameObject.getY(),
-                    Bullet.DEFAULT_WIDTH,
-                    Bullet.DEFAULT_HEIGHT);
             this.bulletControllerVector.add(bulletController);
 
         }

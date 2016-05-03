@@ -33,7 +33,6 @@ public class GameWindow extends Frame implements Runnable {
         this.planeController1 = PlaneController.getPlaneController1();
 
         this.enemyController = EnemyController.getEnemyController();
-        enemyController.rectangle.setBounds(100, 100, 60, 70);
         try {
             backgroundImage = ImageIO.read(new File("resources/background.png"));
         } catch (IOException e) {
@@ -82,13 +81,13 @@ public class GameWindow extends Frame implements Runnable {
         this.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("keyTyped");
+ //               System.out.println("keyTyped");
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("keyPressed");
-                System.out.println(e.getKeyCode());
+ //               System.out.println("keyPressed");
+ //               System.out.println(e.getKeyCode());
 
                 PlaneDirection planeDirection = PlaneDirection.NONE;
 
@@ -119,7 +118,7 @@ public class GameWindow extends Frame implements Runnable {
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("keyReleased");
+ //               System.out.println("keyReleased");
 
                 PlaneDirection planeDirection = PlaneDirection.NONE;
                 switch (e.getKeyCode()) {
@@ -158,7 +157,7 @@ public class GameWindow extends Frame implements Runnable {
 //                } else {
 //                    dx2 = 0;
 //                }
-                System.out.println("mouseMoved");
+  //              System.out.println("mouseMoved");
             }
         });
         thread = new Thread(this);
@@ -185,10 +184,15 @@ public class GameWindow extends Frame implements Runnable {
            // enemyControllerVector.get(0).shot();
 
         g.drawImage(backbufferImage, 0, 0, null);
+        Rectangle rec1 = new Rectangle(enemyController.gameObject.getX() , enemyController.gameObject.getY() , enemyController.gameObject.getWidth() , enemyController.gameObject.getHeight());
         for(int i = 0 ; i < planeController1.bulletControllerVector.size() ; i++){
-            if(enemyController.rectangle.intersects(planeController1.bulletControllerVector.get(i).r)){
-                planeController1.bulletControllerVector.remove(i);
+            Rectangle rect2 = new Rectangle(planeController1.bulletControllerVector.get(i).gameObject.getX(),
+                    planeController1.bulletControllerVector.get(i).gameObject.getY(),
+                    planeController1.bulletControllerVector.get(i).gameObject.getWidth(),
+                    planeController1.bulletControllerVector.get(i).gameObject.getHeight());
+            if(rect2.intersects(rec1)){
                 System.out.println("Va cham");
+                planeController1.bulletControllerVector.remove(i);
             }
         }
     }

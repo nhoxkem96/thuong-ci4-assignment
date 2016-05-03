@@ -15,16 +15,13 @@ import java.util.Vector;
 public class EnemyController extends SingleController {
     public final int speed = 3;
 
-    public Rectangle rectangle;
     public Vector<BulletController> enemyBulletControllerVector;
     public EnemyController(GameObject gameObject, GameDrawer gameDrawer) {
         super(gameObject, gameDrawer);
         enemyBulletControllerVector = new Vector<BulletController>();
-        rectangle = new Rectangle(0 , 0 , 0 , 0);
     }
 
     public static EnemyController enemyController;
-
     public static EnemyController getEnemyController(){
         if(enemyController == null) {
             Plane plane = new Plane(100, 100, 60, 70);
@@ -67,8 +64,5 @@ public class EnemyController extends SingleController {
         super.paint(graphics);
         for (BulletController bulletController : this.enemyBulletControllerVector)
             bulletController.paint(graphics);
-    }
-    public Rectangle getBounds(){
-        return new Rectangle(gameObject.getX() , gameObject.getY() , gameObject.getWidth() , gameObject.getHeight());
     }
 }
