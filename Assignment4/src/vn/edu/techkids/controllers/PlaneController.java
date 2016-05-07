@@ -15,7 +15,7 @@ public class PlaneController extends SingleController implements Colliable{
 
     public final int SPEED = 3;
     public final int MAX_BULLET_COUNT = 3;
-
+    private int health = 2;
     private BulletControllerManager bulletControllerManager;
 
     private PlaneController(Plane gameObject, GameDrawer gameDrawer) {
@@ -91,7 +91,10 @@ public class PlaneController extends SingleController implements Colliable{
 
     @Override
     public void onCollide(Colliable c) {
-
+        if(c instanceof EnemyBulletController){
+            health--;
+        }
+        if(health == 0) gameObject.setAlive(false);
     }
 
     /* TODO: Work on the second plane */

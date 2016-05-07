@@ -18,7 +18,7 @@ public class EnemyBulletController extends SingleController implements Colliable
     @Override
     public void onCollide(Colliable c) {
         if(c instanceof PlaneController){
-            c.getGameObject().setAlive(false);
+            //c.getGameObject().setAlive(false);
             gameObject.setAlive(false);
         }
     }

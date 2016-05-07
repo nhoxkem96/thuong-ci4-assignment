@@ -10,7 +10,6 @@ import vn.edu.techkids.views.ImageDrawer;
 public class BulletController extends SingleController implements Colliable {
 
     public static final int SPEED = 15;
-
     public BulletController(Bullet gameObject, ImageDrawer gameDrawer) {
         super(gameObject, gameDrawer);
         gameVector.dy = -SPEED;
