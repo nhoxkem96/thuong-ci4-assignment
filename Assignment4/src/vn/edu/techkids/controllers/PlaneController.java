@@ -2,6 +2,7 @@ package vn.edu.techkids.controllers;
 
 
 import vn.edu.techkids.models.Bullet;
+import vn.edu.techkids.models.EnemyPlane;
 import vn.edu.techkids.models.Plane;
 import vn.edu.techkids.views.GameDrawer;
 import vn.edu.techkids.views.ImageDrawer;
@@ -11,11 +12,11 @@ import java.awt.*;
 /**
  * Created by qhuydtvt on 4/29/2016.
  */
-public class PlaneController extends SingleController implements Colliable{
+public class PlaneController extends SingleControllerWithHP implements Colliable{
 
     public final int SPEED = 3;
     public final int MAX_BULLET_COUNT = 3;
-    private int health = 2;
+    private int health = 20000;
     private BulletControllerManager bulletControllerManager;
 
     private PlaneController(Plane gameObject, GameDrawer gameDrawer) {
@@ -91,10 +92,15 @@ public class PlaneController extends SingleController implements Colliable{
 
     @Override
     public void onCollide(Colliable c) {
-        if(c instanceof EnemyBulletController){
-            health--;
+//        if(c instanceof EnemyBulletController){
+//            health--;
+//        }
+//        if(health == 0) gameObject.setAlive(false);
+        if(c instanceof EnemyPlaneController){
+            EnemyPlane enemyPlane = (EnemyPlane)c.getGameObject();
+            enemyPlane.setAlive(false);
         }
-        if(health == 0) gameObject.setAlive(false);
+
     }
 
     /* TODO: Work on the second plane */

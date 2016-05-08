@@ -1,6 +1,7 @@
 package vn.edu.techkids.controllers;
 
 import vn.edu.techkids.models.Bullet;
+import vn.edu.techkids.models.EnemyPlane;
 import vn.edu.techkids.models.GameConfig;
 import vn.edu.techkids.views.ImageDrawer;
 
@@ -27,7 +28,13 @@ public class BulletController extends SingleController implements Colliable {
     @Override
     public void onCollide(Colliable c) {
         if(c instanceof EnemyPlaneController){
-            c.getGameObject().setAlive(false);
+            EnemyPlane enemyPlane = (EnemyPlane)c.getGameObject();
+            enemyPlane.decreaseHP();
+            if(enemyPlane.getHp() <= 0){
+                enemyPlane.setAlive(false);
+            }
+
+            //c.getGameObject().setAlive(false);
             gameObject.setAlive(false);
         }
     }

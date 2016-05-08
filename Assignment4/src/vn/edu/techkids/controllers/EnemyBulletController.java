@@ -2,6 +2,7 @@ package vn.edu.techkids.controllers;
 
 
 import vn.edu.techkids.models.EnemyBullet;
+import vn.edu.techkids.models.GameConfig;
 import vn.edu.techkids.views.GameDrawer;
 
 /**
@@ -17,9 +18,14 @@ public class EnemyBulletController extends SingleController implements Colliable
 
     @Override
     public void onCollide(Colliable c) {
-        if(c instanceof PlaneController){
-            //c.getGameObject().setAlive(false);
-            gameObject.setAlive(false);
+
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        if(!GameConfig.getInst().isInScreen(this.gameObject)){
+            this.gameObject.setAlive(false);
         }
     }
 }

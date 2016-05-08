@@ -3,7 +3,7 @@ package vn.edu.techkids.controllers;
 import vn.edu.techkids.models.EnemyBullet;
 import vn.edu.techkids.models.EnemyPlane;
 import vn.edu.techkids.models.GameConfig;
-import vn.edu.techkids.models.GameObject;
+import vn.edu.techkids.models.Plane;
 import vn.edu.techkids.views.GameDrawer;
 import vn.edu.techkids.views.ImageDrawer;
 
@@ -12,7 +12,7 @@ import java.awt.*;
 /**
  * Created by qhuydtvt on 5/6/2016.
  */
-public class EnemyPlaneController extends SingleController implements Colliable {
+public class EnemyPlaneController extends SingleControllerWithHP implements Colliable {
 
     private EnemyBulletControllerManager enemyBulletControllerManager;
     private int count = 0;
@@ -47,6 +47,10 @@ public class EnemyPlaneController extends SingleController implements Colliable 
             );
             this.enemyBulletControllerManager.add(enemyBulletController);
         }
+
+        if(!GameConfig.getInst().isInScreen(this.gameObject)){
+            this.gameObject.setAlive(false);
+        }
     }
 
     @Override
@@ -57,6 +61,10 @@ public class EnemyPlaneController extends SingleController implements Colliable 
 
     @Override
     public void onCollide(Colliable c) {
+        if(c instanceof PlaneController){
+            Plane plane = (Plane)c.getGameObject();
+            plane.decreaseHP(2);
 
+        }
     }
 }
