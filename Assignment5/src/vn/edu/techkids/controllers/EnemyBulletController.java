@@ -10,11 +10,12 @@ import vn.edu.techkids.views.GameDrawer;
  * Created by qhuydtvt on 5/6/2016.
  */
 public class EnemyBulletController extends SingleController implements Colliable {
-
-    public EnemyBulletController(EnemyBullet gameObject, GameDrawer gameDrawer) {
+    private int damage;
+    public EnemyBulletController(EnemyBullet gameObject, GameDrawer gameDrawer , int damage) {
         super(gameObject, gameDrawer);
         this.gameVector.dy = 5;
         this.gameVector.dx = -5;
+        this.damage = damage;
         CollisionPool.getInst().add(this);
     }
 
@@ -30,7 +31,7 @@ public class EnemyBulletController extends SingleController implements Colliable
     public void onCollide(Colliable c) {
         if (c instanceof PlaneController) {
             Plane plane = (Plane) c.getGameObject();
-            plane.decreaseHP();
+            plane.decreaseHP(damage);
             if (plane.getHp() <= 0) {
                 plane.setAlive(false);
             }

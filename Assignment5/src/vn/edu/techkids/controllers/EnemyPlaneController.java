@@ -13,14 +13,15 @@ import java.awt.*;
  * Created by qhuydtvt on 5/6/2016.
  */
 public class EnemyPlaneController extends SingleControllerWithHP implements Colliable {
-
+    private int dx ;
+    private int dy ;
     private EnemyBulletControllerManager enemyBulletControllerManager;
     private int count = 0;
 
-    public EnemyPlaneController(EnemyPlane gameObject, GameDrawer gameDrawer) {
+    public EnemyPlaneController(EnemyPlane gameObject, GameDrawer gameDrawer , int dx , int dy) {
         super(gameObject, gameDrawer);
-        this.gameVector.dy = 2;
-        this.gameVector.dx = 2;
+        this.gameVector.dy = dx;
+        this.gameVector.dx = dy;
         enemyBulletControllerManager = new EnemyBulletControllerManager();
         CollisionPool.getInst().add(this);
     }
@@ -59,7 +60,7 @@ public class EnemyPlaneController extends SingleControllerWithHP implements Coll
             ImageDrawer imageDrawer = new ImageDrawer("resources/enemy_bullet.png");
             EnemyBulletController enemyBulletController = new EnemyBulletController(
                     enemyBullet,
-                    imageDrawer
+                    imageDrawer , 3
             );
             this.enemyBulletControllerManager.add(enemyBulletController);
         }
